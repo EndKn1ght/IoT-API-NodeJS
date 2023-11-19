@@ -46,8 +46,71 @@ This API use Node.JS for its runtime and Express as for framework that run on to
 | /api/getmonth | month=9   | year=2023 |
 
 1. For `api/getdata`, you dont need input any query, it will return all the data from db.
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "date": "2023-05-27T15:24:43.000Z",
+      "temperature": 41.64,
+      "moisture": 69,
+      "relay": 1,
+      "humidity": 2,
+      "soil_temperature": -46
+    },
+    {
+      "id": 2,
+      "date": "2023-09-10T02:58:48.000Z",
+      "temperature": -9.16,
+      "moisture": 67,
+      "relay": 1,
+      "humidity": 39,
+      "soil_temperature": -28
+    },
+    ...
+  ]
+}
+```
+
 2. For `api/getweek`, you need to put two parameter or query, the paramater need for specific time that you need. It will return mean of eachday for a month
+   The Response
+
+```json
+{
+    "2": [
+        {
+            "day_of_month": 1,
+            "formatted_date": "2023-02-01",
+            "month_name": "February",
+            "mean_temperature": -4.2,
+            "mean_moisture": "7.0000",
+            "mean_humidity": "68.5000",
+            "mean_soil_temperature": "-25.0000"
+        },
+        ...
+    ]
+}
+```
+
 3. For `api/getmonth`, you need to put two parameter or query, the parameter need for specific time that you need. It will return mean of each week of the mont
+   The Response
+
+```json
+{
+  "August": [
+    {
+      "week_number": 31,
+      "start_date": "8/1/2023",
+      "mean_temperature": -3.766667,
+      "mean_moisture": "47.6667",
+      "mean_humidity": "52.4167",
+      "mean_soil_temperature": "16.0000"
+    },
+    ...
+  ]
+}
+```
 
 ## Endpint POST Method
 
@@ -56,3 +119,18 @@ This API use Node.JS for its runtime and Express as for framework that run on to
 | /api/postdata | temperatur=56.67 | moisture=45 | relay=true | humidity=67 | soil_temperature=55 |
 
 1. For POST Method you can use `json` or `urlencoded`.
+
+   The Response
+
+````json
+{
+    "receivedData": {
+        "temperature": 54.3,
+        "moisture": 69,
+        "relay": true,
+        "humidity": 52,
+        "soil_temperature": 44
+    },
+    "insertedId": 1001
+}```
+````
